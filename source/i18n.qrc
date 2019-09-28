@@ -1,0 +1,8 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="i18n">
+<file alias="weather-ru.qm">i18n/weather-ru.qm</file>
+<file alias="weather-tr.qm">i18n/weather-tr.qm</file>
+<file alias="weather-uk.qm">i18n/weather-uk.qm</file>
+<file alias="weather-zh_CN.qm">i18n/weather-zh_CN.qm</file>
+</qresource>
+</RCC>
