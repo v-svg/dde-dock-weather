@@ -22,4 +22,4 @@ sudo make install
 ```
 
 ### Acknowledgment ###
-This Plugin was initially inspired by [sonichy's weather plugin](https://github.com/sonichy/WEATHER_DDE_DOCK) and by [CareF neoweather plugin](https://github.com/sonichy/WEATHER_DDE_DOCK).
+This Plugin was initially inspired by [sonichy's weather plugin](https://github.com/sonichy/WEATHER_DDE_DOCK) and by [CareF neoweather plugin](https://github.com/CareF/deepin-dock-plugin-neoweather).
