@@ -16,6 +16,7 @@ const QStringList themeSet({"Color", "Flat", "Pure", "Simple", "Sticker", "White
  * The first String is the default choice (system Language).
  */
 const QMap<QString, QString> langSet = {{"", ""},
+                                        {"Español", "es"},
                                         {"Português do Brasil", "pt_BR"},                                        
                                         {"Русский", "ru"},
                                         {"Türkçe", "tr"},
