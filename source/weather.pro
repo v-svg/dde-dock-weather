@@ -38,6 +38,7 @@ lessThan(QT_MAJOR_VERSION, 5.8): !system($$PWD/genqm.sh): error("Failed to gener
 
 
 TRANSLATIONS = \
+    $$_PRO_FILE_PWD_/i18n/weather-es.ts \
     $$_PRO_FILE_PWD_/i18n/weather-pt_BR.ts \
     $$_PRO_FILE_PWD_/i18n/weather-ru.ts \
     $$_PRO_FILE_PWD_/i18n/weather-tr.ts \
