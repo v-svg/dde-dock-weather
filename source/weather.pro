@@ -33,8 +33,7 @@ target.path = $${PREFIX}/lib/dde-dock/plugins/
 INSTALLS += target
 
 RESOURCES += res.qrc
-lessThan(QT_MAJOR_VERSION, 5.8): RESOURCES += i18n.qrc
-lessThan(QT_MAJOR_VERSION, 5.8): !system($$PWD/genqm.sh): error("Failed to generate translation")
+
 
 
 TRANSLATIONS = \
