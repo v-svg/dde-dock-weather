@@ -9,8 +9,8 @@ ForecastApplet::ForecastApplet(const WeatherClient *wcli,
                              QString thm, QWidget *parent)
     : QWidget(parent), client(wcli), themeName(thm)
 {
-    setFixedWidth(298);
-    setFixedHeight(440);
+    setFixedWidth(319);
+    setFixedHeight(464);
     QDate date = date.currentDate();
     QString dateString = date.toString(DATEFORMAT);
     QString styleSheet = QString("font-weight: bold; font-size: 20px; margin: 0px 0px 20px 0px;");
@@ -69,7 +69,7 @@ void ForecastApplet::paintEvent(QPaintEvent *e)
     painter.setRenderHint(QPainter::Antialiasing);
     painter.setPen(Qt::NoPen);
     painter.setBrush(QColor(255, 255, 255, 0.12 * 255));
-    painter.drawRect(0, 97, 298, 1);
+    painter.drawRect(0, 97, 319, 1);
 }
 
 QPixmap ForecastApplet::loadWIconNow(const QString &name, int size) const {
