@@ -16,10 +16,14 @@ qmake ../source
 make
 ```
 
-And than install
+Install:
 ```
 sudo make install
 ```
 
+and restart deepin dock:
+```
+killall dde-dock
+```
 ### Acknowledgment ###
 This Plugin was initially inspired by [sonichy's weather plugin](https://github.com/sonichy/WEATHER_DDE_DOCK) and by [CareF neoweather plugin](https://github.com/CareF/deepin-dock-plugin-neoweather).
