@@ -4,6 +4,12 @@
 <context>
     <name>ForecastApplet</name>
     <message>
+        <source> MM/dd 
+ddd</source>
+        <translation> M-d 
+ddd</translation>
+    </message>
+    <message>
         <source>N/A</source>
         <translation>N/A</translation>
     </message>
@@ -139,12 +145,14 @@
         <translation>间隔</translation>
     </message>
     <message>
-        <source>999 min</source>
+        <source>999 mi\nutes</source>
         <translation>999分钟</translation>
     </message>
     <message>
-        <source>Due to the limitations of openweathermap.org for free account, you have to use your own appid to set shorter time interval.</source>
-        <translation>由于 openweathermap.org 的免费账户限制, 你需要使用自己的 appid 以开启更新间隔设置.</translation>
+        <source>Due to the limitations of openweathermap.org for free account,
+you have to use your own appid to set shorter time interval.</source>
+        <translation>由于 openweathermap.org 的免费账户限制,
+你需要使用自己的 appid 以开启更新间隔设置.</translation>
     </message>
     <message>
         <source>Units</source>
@@ -171,8 +179,9 @@
         <translation>系统语言</translation>
     </message>
     <message>
-        <source>You may need to restart the dock to make language setting effective.</source>
-        <translation>你可能需要重启 dock 以启用新的语言设置</translation>
+        <source>The language selected for the weather
+forecast will be applied immediately.</source>
+        <translation>为天气预报选择的语言将立即应用</translation>
     </message>
     <message>
         <source>appid from openweathermap.org</source>
@@ -183,8 +192,10 @@
         <translation>AppID</translation>
     </message>
     <message>
-        <source>The plugin default appid is proviede by the author. Click to learn how to get your own appid.</source>
-        <translation>插件作者提供了默认的 appid. 点击这里获取你自己的 appid.</translation>
+        <source>The plugin default appid is proviede by the author.
+Click to learn how to get your own appid.</source>
+        <translation>插件作者提供了默认的 appid.
+点击这里获取你自己的 appid.</translation>
     </message>
 </context>
 </TS>

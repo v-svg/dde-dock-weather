@@ -41,7 +41,7 @@ public:
     /** Set appid (globally). Empty string to reset. */
     static void setAppid(const QString &key);
     QDateTime sunrise;
-    QDateTime sunset; 
+    QDateTime sunset;
     struct CityInfo {
         int id; QString name; QString country;
         double lat; double lon; // longitude and latitude
@@ -147,15 +147,13 @@ public:
     QString tempNow() const {
         return QString::number(wnow.temp, 'f', 1) + " " + tempUnit();}
     QString windDir() const {
-	QStringList labels({
-			tr("N"), tr("NE"), tr("E"), tr("SE"),
-			tr("S"), tr("SW"), tr("W"), tr("NW"),
-	});
-	return labels[(qRound(wnow.windDeg + 180.0 / labels.size(
-                    )) * labels.size() / 360) % labels.size()];
+    QStringList labels({tr("N"), tr("NE"), tr("E"), tr("SE"),
+                        tr("S"), tr("SW"), tr("W"), tr("NW")});
+        return labels[(qRound(wnow.windDeg + 180.0 / labels.size()) *
+                        labels.size() / 360) % labels.size()];
     }
     QString tipNow() const {
-        return QString("%1, %2\n%3, %4\n").arg(city).arg(
+        return QString("%1, %2\n%3\n%4\n").arg(city).arg(
                     country).arg(tempNow()).arg(wnow.description) +
                 tr("Humidity %1%\n").arg(wnow.humidity) +
                 tr("Clouds %1%\n").arg(wnow.clouds) +
@@ -191,8 +189,6 @@ public slots:
      * and according to #cityid, update #city and #country. */
     void checkWeather(int timeout);
     void checkWeather() {return checkWeather(60000);}  //Overload 1min for timeout
-
-private slots:
     void parseWeather();
     void parseForecast();
     void errorHandle(ErrorCode) override;

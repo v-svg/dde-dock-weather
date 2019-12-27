@@ -49,6 +49,7 @@ private:
 
 private slots:
     void newAppidInput(const QString &input);
+    void reloadLang();
 };
 
 

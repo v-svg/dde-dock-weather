@@ -142,14 +142,15 @@ ddd</source>
     </message>
     <message>
         <source>Interval</source>
-        <translation>Период обновления</translation>
+        <translation>Интервал</translation>
     </message>
     <message>
-        <source>999 min</source>
-        <translation>999 мин</translation>
+        <source>999 mi\nutes</source>
+        <translation>999 минут</translation>
     </message>
     <message>
-        <source>Due to the limitations of openweathermap.org for free account, you have to use your own appid to set shorter time interval.</source>
+        <source>Due to the limitations of openweathermap.org for free account,
+you have to use your own appid to set shorter time interval.</source>
         <translation>Из-за ограничений openweathermap для бесплатного аккаунта, используйте
 свой собственный appid для установки более короткого интервала времени.</translation>
     </message>
@@ -178,9 +179,10 @@ ddd</source>
         <translation>Системный</translation>
     </message>
     <message>
-        <source>You may need to restart the dock to make language setting effective.</source>
-        <translation>Вам нужно перезапустить док-панель,
- чтобы применить настройку языка.</translation>
+        <source>The language selected for the weather
+forecast will be applied immediately.</source>
+        <translation>Язык, выбранный для прогноза погоды,
+будет применен немедленно.</translation>
     </message>
     <message>
         <source>appid from openweathermap.org</source>
@@ -191,7 +193,8 @@ ddd</source>
         <translation>AppID</translation>
     </message>
     <message>
-        <source>The plugin default appid is proviede by the author. Click to learn how to get your own appid.</source>
+        <source>The plugin default appid is proviede by the author.
+Click to learn how to get your own appid.</source>
         <translation>Appid по умолчанию предоставлен автором.
 Нажмите, чтобы узнать, как получить свой appid.</translation>
     </message>

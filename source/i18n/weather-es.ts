@@ -7,7 +7,7 @@
         <source> MM/dd 
 ddd</source>
         <translation>ddd
- dd.MM </translation>
+ dd/MM </translation>
     </message>
     <message>
         <source>N/A</source>
@@ -145,12 +145,14 @@ ddd</source>
         <translation>Intervalo</translation>
     </message>
     <message>
-        <source>999 min</source>
-        <translation>999 min</translation>
+        <source>999 mi\nutes</source>
+        <translation>999 mi\nutos</translation>
     </message>
     <message>
-        <source>Due to the limitations of openweathermap.org for free account, you have to use your own appid to set shorter time interval.</source>
-        <translation>Debido a las limitaciones de openweathermap.org para una cuenta gratuita, usted tiene que usar su propio appid para establecer un intervalo de tiempo más corto. </translation>
+        <source>Due to the limitations of openweathermap.org for free account,
+you have to use your own appid to set shorter time interval.</source>
+        <translation>Debido a las limitaciones de openweathermap.org para una cuenta gratuita,
+usted tiene que usar su propio appid para establecer un intervalo de tiempo más corto. </translation>
     </message>
     <message>
         <source>Units</source>
@@ -177,8 +179,10 @@ ddd</source>
         <translation>Idioma del sistema</translation>
     </message>
     <message>
-        <source>You may need to restart the dock to make language setting effective.</source>
-        <translation>Es posible que deba reiniciar el acoplamiento para que la configuración del idioma sea efectiva.</translation>
+        <source>The language selected for the weather
+forecast will be applied immediately.</source>
+        <translation>El idioma seleccionado para el pronóstico
+del tiempo se aplicará de inmediato.</translation>
     </message>
     <message>
         <source>appid from openweathermap.org</source>
@@ -189,8 +193,10 @@ ddd</source>
         <translation>AppID</translation>
     </message>
     <message>
-        <source>The plugin default appid is proviede by the author. Click to learn how to get your own appid.</source>
-        <translation>La aplicación por defecto del plugin es proporcionada por el autor. Haga clic para aprender a obtener su propio appid.</translation>
+        <source>The plugin default appid is proviede by the author.
+Click to learn how to get your own appid.</source>
+        <translation>La aplicación por defecto del plugin es proporcionada por el autor.
+Haga clic para aprender a obtener su propio appid.</translation>
     </message>
 </context>
 </TS>

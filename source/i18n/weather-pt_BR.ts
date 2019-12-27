@@ -4,6 +4,12 @@
 <context>
     <name>ForecastApplet</name>
     <message>
+        <source> MM/dd 
+ddd</source>
+        <translation>ddd
+ dd/MM </translation>
+    </message>
+    <message>
         <source>N/A</source>
         <translation>N/A</translation>
     </message>
@@ -139,12 +145,14 @@
         <translation>Intervalo</translation>
     </message>
     <message>
-        <source>999 min</source>
-        <translation>999 min</translation>
+        <source>999 mi\nutes</source>
+        <translation>999 mi\nutos</translation>
     </message>
     <message>
-        <source>Due to the limitations of openweathermap.org for free account, you have to use your own appid to set shorter time interval.</source>
-        <translation>Devido às limitações do OpenWeatherMap.org para a conta gratuita, você deve usar o seu próprio AppID para um intervalo menor.</translation>
+        <source>Due to the limitations of openweathermap.org for free account,
+you have to use your own appid to set shorter time interval.</source>
+        <translation>Devido às limitações do OpenWeatherMap.org para a conta gratuita,
+você deve usar o seu próprio AppID para um intervalo menor.</translation>
     </message>
     <message>
         <source>Units</source>
@@ -171,8 +179,10 @@
         <translation>Idioma do Sistema</translation>
     </message>
     <message>
-        <source>You may need to restart the dock to make language setting effective.</source>
-        <translation>Pode ser necessário reiniciar a dock para o idioma entrar em vigor.</translation>
+        <source>The language selected for the weather
+forecast will be applied immediately.</source>
+        <translation>O idioma selecionado para a previsão
+do tempo será aplicado imediatamente.</translation>
     </message>
     <message>
         <source>appid from openweathermap.org</source>
@@ -183,8 +193,10 @@
         <translation>AppID</translation>
     </message>
     <message>
-        <source>The plugin default appid is proviede by the author. Click to learn how to get your own appid.</source>
-        <translation>O AppID padrão do plug-in é fornecido pelo autor. Clique para saber como obter o seu próprio AppID.</translation>
+        <source>The plugin default appid is proviede by the author.
+Click to learn how to get your own appid.</source>
+        <translation>O AppID padrão do plug-in é fornecido pelo autor.
+Clique para saber como obter o seu próprio AppID.</translation>
     </message>
 </context>
 </TS>

@@ -142,15 +142,18 @@ ddd</source>
     </message>
     <message>
         <source>Interval</source>
-        <translation>Період оновлення</translation>
+        <translation>Інтервал</translation>
     </message>
     <message>
-        <source>999 min</source>
-        <translation>999 хв</translation>
+        <source>999 mi\nutes</source>
+        <translation>999 хвилин</translation>
     </message>
     <message>
-        <source>Due to the limitations of openweathermap.org for free account, you have to use your own appid to set shorter time interval.</source>
-        <translation>Через обмеження openweathermap.org для безкоштовного облікового запису вам потрібно використовувати власний appid, щоб встановити менший часовий інтервал.</translation>
+        <source>Due to the limitations of openweathermap.org for free account,
+you have to use your own appid to set shorter time interval.</source>
+        <translation>Через обмеження openweathermap.org для безкоштовного облікового запису
+вам потрібно використовувати власний appid, щоб встановити
+коротший часовий інтервал.</translation>
     </message>
     <message>
         <source>Units</source>
@@ -177,9 +180,10 @@ ddd</source>
         <translation>Системна</translation>
     </message>
     <message>
-        <source>You may need to restart the dock to make language setting effective.</source>
-        <translation>Вам потрібно перезапустити док-панель,
-  щоб застосувати налаштування мови.</translation>
+        <source>The language selected for the weather
+forecast will be applied immediately.</source>
+        <translation>Мова, обрана для прогнозу погоди,
+буде застосована негайно.</translation>
     </message>
     <message>
         <source>appid from openweathermap.org</source>
@@ -190,7 +194,8 @@ ddd</source>
         <translation>AppID</translation>
     </message>
     <message>
-        <source>The plugin default appid is proviede by the author. Click to learn how to get your own appid.</source>
+        <source>The plugin default appid is proviede by the author.
+Click to learn how to get your own appid.</source>
         <translation>Appid за замовчуванням надано автором.
 Натисніть, щоб дізнатися, як отримати свій appid.</translation>
     </message>

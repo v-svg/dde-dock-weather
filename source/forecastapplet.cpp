@@ -10,27 +10,27 @@ ForecastApplet::ForecastApplet(const WeatherClient *wcli,
     : QWidget(parent), client(wcli), themeName(thm)
 {
     setFixedWidth(319);
-    setFixedHeight(464);
+    setFixedHeight(468);
     QDate date = date.currentDate();
     QString dateString = date.toString(DATEFORMAT);
-    QString styleSheet = QString("font-weight: bold; font-size: 20px; margin: 0px 0px 20px 0px;");
+    QString styleSheet = QString("font-weight: 500; font-size: 21px; margin: 0px 0px 20px 0px;");
     WImgNow = new QLabel;
     WImgNow->setPixmap(loadWIconNow("na", PRIMARYICONSIZE));
     WImgNow->setAlignment(Qt::AlignCenter);
     WImgNow->setStyleSheet("margin: 0px 0px 20px 0px;");
-    WImgNow->setFixedSize(70, 95);
+    WImgNow->setFixedSize(72, 103);
     defaultLayout.addWidget(WImgNow, 0, 0);
     tempNow = new QLabel("-25 ~ 25 °C\nClear");
     tempNow->setAlignment(Qt::AlignCenter);
     tempNow->setStyleSheet(styleSheet);
     tempNow->setWordWrap(true);
-    tempNow->setFixedHeight(95);
+    tempNow->setFixedHeight(103);
     defaultLayout.addWidget(tempNow, 0, 1);
     dateNow = new QLabel(dateString);
     dateNow->setAlignment(Qt::AlignCenter);
     dateNow->setStyleSheet(styleSheet);
-    dateNow->setMaximumWidth(70);
-    dateNow->setFixedHeight(95);
+    dateNow->setMaximumWidth(72);
+    dateNow->setFixedHeight(103);
     defaultLayout.addWidget(dateNow, 0, 2);
 
     const QDate today = QDate::currentDate();
@@ -69,7 +69,7 @@ void ForecastApplet::paintEvent(QPaintEvent *e)
     painter.setRenderHint(QPainter::Antialiasing);
     painter.setPen(Qt::NoPen);
     painter.setBrush(QColor(255, 255, 255, 0.12 * 255));
-    painter.drawRect(0, 97, 319, 1);
+    painter.drawRect(0, 105, 319, 1);
 }
 
 QPixmap ForecastApplet::loadWIconNow(const QString &name, int size) const {

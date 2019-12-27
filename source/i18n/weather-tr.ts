@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="tr_TR" sourcelanguage="en">
+<TS version="2.1" language="tr" sourcelanguage="en">
 <context>
     <name>ForecastApplet</name>
     <message>
@@ -106,15 +106,17 @@ ddd</source>
     </message>
     <message>
         <source>Interval</source>
-        <translation>Güncelleme aralığı</translation>
+        <translation>Aralık</translation>
     </message>
     <message>
-        <source>999 min</source>
-        <translation>999 dakika</translation>
+        <source>999 mi\nutes</source>
+        <translation>999 \d\akik\a</translation>
     </message>
     <message>
-        <source>Due to the limitations of openweathermap.org for free account, you have to use your own appid to set shorter time interval.</source>
-        <translation>Openweathermap.org ücretsiz hesabı kısıtlamaları yüzünden, daha kısa aralıklarla güncelleme almak için kendi uygulama id&apos;nizi (appid) almalısınız.</translation>
+        <source>Due to the limitations of openweathermap.org for free account,
+you have to use your own appid to set shorter time interval.</source>
+        <translation>Openweathermap.org ücretsiz hesabı kısıtlamaları yüzünden,daha kısa
+aralıklarla güncelleme almak için kendi uygulama id&apos;nizi (appid) almalısınız.</translation>
     </message>
     <message>
         <source>Units</source>
@@ -141,20 +143,24 @@ ddd</source>
         <translation>Sistem Dili</translation>
     </message>
     <message>
-        <source>You may need to restart the dock to make language setting effective.</source>
-        <translation>Dil ayarını etkili hale getirmek için dde-dock'u yeniden başlatmanız gerekebilir.</translation>
+        <source>The language selected for the weather
+forecast will be applied immediately.</source>
+        <translation>Hava tahmini için seçilen
+dil hemen uygulanacak.</translation>
     </message>
     <message>
         <source>appid from openweathermap.org</source>
-        <translation>openweathermap.org uygulama id&apos;si (appid)</translation>
+        <translation>openweathermap.org&apos;dan id&apos;si (appid)</translation>
     </message>
     <message>
         <source>AppID</source>
         <translation>AppID</translation>
     </message>
     <message>
-        <source>The plugin default appid is proviede by the author. Click to learn how to get your own appid.</source>
-        <translation>Eklenti için varsayılan appid&apos;si geliştirici tarafından sağlanmıştır. Kendi appid&apos;nizi nasıl alacağınızı öğrenmek için tıklayın.</translation>
+        <source>The plugin default appid is proviede by the author.
+Click to learn how to get your own appid.</source>
+        <translation>Eklenti için varsayılan appid&apos;si geliştirici tarafından sağlanmıştır.
+Kendi appid&apos;nizi nasıl alacağınızı öğrenmek için tıklayın.</translation>
     </message>
 </context>
 </TS>

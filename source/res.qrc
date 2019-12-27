@@ -1,7 +1,4 @@
 <RCC>
-    <qresource prefix="/">
-        <file alias="question">icon/question.svg</file>
-    </qresource>
     <qresource prefix="/Color">
         <file alias="01d">icon/Color/01d.png</file>
         <file alias="01n">icon/Color/01n.png</file>
@@ -128,5 +125,4 @@
         <file alias="50n">icon/White/50n.png</file>
         <file alias="na">icon/White/na.png</file>
     </qresource>
-
 </RCC>

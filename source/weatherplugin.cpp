@@ -26,7 +26,7 @@ WeatherPlugin::WeatherPlugin (QObject *parent):
 {
 }
 
-WeatherPlugin::~WeatherPlugin () {
+WeatherPlugin::~WeatherPlugin() {
     log.flush();
     logFile.close();
     delete m_popups;
