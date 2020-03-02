@@ -9,23 +9,28 @@ ForecastApplet::ForecastApplet(const WeatherClient *wcli,
                              QString thm, QWidget *parent)
     : QWidget(parent), client(wcli), themeName(thm)
 {
+    const QDate today = QDate::currentDate();
+
     setFixedWidth(319);
     setFixedHeight(468);
-    QDate date = date.currentDate();
-    QString dateString = date.toString(DATEFORMAT);
+
+    QString dateString = today.toString(DATEFORMAT);
     QString styleSheet = QString("font-weight: 500; font-size: 21px; margin: 0px 0px 20px 0px;");
+
     WImgNow = new QLabel;
     WImgNow->setPixmap(loadWIconNow("na", PRIMARYICONSIZE));
     WImgNow->setAlignment(Qt::AlignCenter);
     WImgNow->setStyleSheet("margin: 0px 0px 20px 0px;");
     WImgNow->setFixedSize(72, 103);
     defaultLayout.addWidget(WImgNow, 0, 0);
+
     tempNow = new QLabel("-25 ~ 25 °C\nClear");
     tempNow->setAlignment(Qt::AlignCenter);
     tempNow->setStyleSheet(styleSheet);
     tempNow->setWordWrap(true);
     tempNow->setFixedHeight(103);
     defaultLayout.addWidget(tempNow, 0, 1);
+
     dateNow = new QLabel(dateString);
     dateNow->setAlignment(Qt::AlignCenter);
     dateNow->setStyleSheet(styleSheet);
@@ -33,16 +38,17 @@ ForecastApplet::ForecastApplet(const WeatherClient *wcli,
     dateNow->setFixedHeight(103);
     defaultLayout.addWidget(dateNow, 0, 2);
 
-    const QDate today = QDate::currentDate();
     for (int i=0; i<MAXDAYS; i++) {
         fcstLabels[i].WImg = new QLabel;
         fcstLabels[i].WImg->setPixmap(loadWIcon());
         fcstLabels[i].WImg->setAlignment(Qt::AlignCenter);
         defaultLayout.addWidget(fcstLabels[i].WImg, i+1, 0);
+
         fcstLabels[i].Temp = new QLabel("-25 ~ 25 °C\nClear");
         fcstLabels[i].Temp->setAlignment(Qt::AlignCenter);
         fcstLabels[i].Temp->setWordWrap(true);
         defaultLayout.addWidget(fcstLabels[i].Temp, i+1, 1);
+
         fcstLabels[i].Date = new QLabel(
                     today.addDays(i+1).toString(DATEFORMAT));
         fcstLabels[i].Date->setAlignment(Qt::AlignCenter);
@@ -50,12 +56,10 @@ ForecastApplet::ForecastApplet(const WeatherClient *wcli,
     }
 
     setLayout(&defaultLayout);
-    connect(client, &WeatherClient::allReady,
-            this, &ForecastApplet::reloadForecast);
-    connect(client, &WeatherClient::changed,
-            this, &ForecastApplet::reloadForecast);
-    connect(client, &OpenWeatherClient::error,
-            this, &ForecastApplet::updateError);
+
+    connect(client, &WeatherClient::allReady, this, &ForecastApplet::reloadForecast);
+    connect(client, &WeatherClient::changed, this, &ForecastApplet::reloadForecast);
+    connect(client, &OpenWeatherClient::error, this, &ForecastApplet::updateError);
 }
 
 ForecastApplet::~ForecastApplet() {
@@ -136,15 +140,16 @@ void ForecastApplet::reloadForecast() {
     if (next->dateTime.date() == QDate::currentDate()) {
         // Today is included in the forecast
         next = getDayStatic(forecasts.begin(), temp_min, temp_max, &primary);
-    }
-    else {
+    } else {
         primary = &client->weatherNow();
         temp_min = primary->temp_min;
         temp_max = primary->temp_max;
     }
+    const QDate date = QDate::currentDate();
     WImgNow->setPixmap(loadWIconNow(primary->icon, PRIMARYICONSIZE));
     tempNow->setText(QString("%1 ~ %2 %3\n%4").arg(qRound(temp_min)).arg(
                          qRound(temp_max)).arg(client->tempUnit()).arg(primary->description));
+    dateNow->setText(date.toString(DATEFORMAT));
 
     int n = 0;
     while (next != forecasts.end() && n < MAXDAYS) {
@@ -153,11 +158,13 @@ void ForecastApplet::reloadForecast() {
         fcstLabels[n].Temp->setText(QString("%1 ~ %2 %3\n%4").arg(
                                         qRound(temp_min)).arg(qRound(temp_max)).arg(
                                         client->tempUnit()).arg(primary->description));
+        fcstLabels[n].Date->setText(date.addDays(n+1).toString(DATEFORMAT));
         n++;
     }
-    for (; n < MAXDAYS; n++) {
+    for (;n < MAXDAYS; n++) {
         fcstLabels[n].WImg->setPixmap(loadWIcon("na"));
         fcstLabels[n].Temp->setText(tr("N/A"));
+        fcstLabels[n].Date->setText("?");
     }
 }
 

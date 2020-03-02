@@ -4,12 +4,6 @@
 <context>
     <name>ForecastApplet</name>
     <message>
-        <source> MM/dd 
-ddd</source>
-        <translation> M-d 
-ddd</translation>
-    </message>
-    <message>
         <source>N/A</source>
         <translation>N/A</translation>
     </message>

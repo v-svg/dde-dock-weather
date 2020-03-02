@@ -145,7 +145,7 @@ public:
     inline QString tempUnit() const {return isMetric? "°C" : "°F";}
     inline QString windUnit() const {return isMetric? tr("m/s") : "mi/h";}
     QString tempNow() const {
-        return QString::number(wnow.temp, 'f', 1) + " " + tempUnit();}
+        return QString::number(wnow.temp, 'f', 1).replace(".0", "") + " " + tempUnit();}
     QString windDir() const {
     QStringList labels({tr("N"), tr("NE"), tr("E"), tr("SE"),
                         tr("S"), tr("SW"), tr("W"), tr("NW")});

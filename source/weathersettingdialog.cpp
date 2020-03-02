@@ -63,6 +63,7 @@ WeatherSettingDialog::WeatherSettingDialog(PluginProxyInterface *proxyInter,
 {
     setModal(true);
     setWindowTitle(tr("Weather"));
+    setWindowIcon(QIcon::fromTheme("weather"));
     QVBoxLayout *vLayout = new QVBoxLayout();
     vLayout->setSizeConstraint(QLayout::SetFixedSize);
 
