@@ -13,6 +13,9 @@ public:
                          const ForecastApplet *popups,
                          QWidget *parent = nullptr);
 
+signals:
+    void requestUpdateGeometry() const;
+
 protected:
     QSize sizeHint() const;
     void resizeEvent(QResizeEvent *e) {
@@ -28,6 +31,7 @@ private:
     const WeatherClient *client;
     const ForecastApplet *fcstApplet;
     QPixmap m_iconPixmap;
+    QString tempCur;
 };
 
 #endif // WEATHERWIDGET_H
