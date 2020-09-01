@@ -176,15 +176,15 @@ void WeatherClient::parseWeather() {
             emit error(JsonBadWeather);
             return;
         }
-        // TODO: sunrise and sunset?
-     sunrise = QDateTime::fromTime_t(o.value("sys").toObject().value("sunrise").toInt());
-     sunset = QDateTime::fromTime_t(o.value("sys").toObject().value("sunset").toInt());
         if (city == "") {
             city = o.value("name").toString();
             country = o.value("sys").toObject().value("country").toString();
         }
         if (cityid == 0)
             cityid = o.value("id").toInt();
+        // sunrise and sunset
+        sunrise = QDateTime::fromTime_t(o.value("sys").toObject().value("sunrise").toInt());
+        sunset = QDateTime::fromTime_t(o.value("sys").toObject().value("sunset").toInt());
 
         log << QString("Parsing weather for %1, %2 (id: %3)"
                        ).arg(city).arg(country).arg(cityid) << endl;

@@ -147,17 +147,18 @@ void ForecastApplet::reloadForecast() {
     }
     const QDate date = QDate::currentDate();
     WImgNow->setPixmap(loadWIconNow(primary->icon, PRIMARYICONSIZE));
-    tempNow->setText(QString("%1 ~ %2 %3\n%4").arg(qRound(temp_min)).arg(
-                         qRound(temp_max)).arg(client->tempUnit()).arg(primary->description));
+    tempNow->setText(QString("%1 ~ %2 %3\n%4").arg(qRound(temp_min)).arg(qRound(temp_max)).arg(
+                client->tempUnit()).arg(primary->description.at(0).toUpper() + 
+                primary->description.mid(1)));
     dateNow->setText(date.toString(DATEFORMAT));
 
     int n = 0;
     while (next != forecasts.end() && n < MAXDAYS) {
         next = getDayStatic(next, temp_min, temp_max, &primary);
         fcstLabels[n].WImg->setPixmap(loadWIcon(primary->icon));
-        fcstLabels[n].Temp->setText(QString("%1 ~ %2 %3\n%4").arg(
-                                        qRound(temp_min)).arg(qRound(temp_max)).arg(
-                                        client->tempUnit()).arg(primary->description));
+        fcstLabels[n].Temp->setText(QString("%1 ~ %2 %3\n%4").arg(qRound(temp_min)).arg(qRound(
+                                temp_max)).arg(client->tempUnit()).arg(primary->description.at(
+                                0).toUpper() + primary->description.mid(1)));
         fcstLabels[n].Date->setText(date.addDays(n+1).toString(DATEFORMAT));
         n++;
     }
