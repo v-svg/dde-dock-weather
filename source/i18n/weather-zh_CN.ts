@@ -139,7 +139,7 @@
         <translation>间隔</translation>
     </message>
     <message>
-        <source>999 mi\nutes</source>
+        <source>999 mi\n</source>
         <translation>999分钟</translation>
     </message>
     <message>

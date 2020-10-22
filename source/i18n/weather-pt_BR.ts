@@ -145,10 +145,6 @@ ddd</source>
         <translation>Intervalo</translation>
     </message>
     <message>
-        <source>999 mi\nutes</source>
-        <translation>999 mi\nutos</translation>
-    </message>
-    <message>
         <source>Due to the limitations of openweathermap.org for free account,
 you have to use your own appid to set shorter time interval.</source>
         <translation>Devido às limitações do OpenWeatherMap.org para a conta gratuita,

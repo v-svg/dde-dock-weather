@@ -145,8 +145,8 @@ ddd</source>
         <translation>Інтервал</translation>
     </message>
     <message>
-        <source>999 mi\nutes</source>
-        <translation>999 хвилин</translation>
+        <source>999 mi\n</source>
+        <translation>999 хв</translation>
     </message>
     <message>
         <source>Due to the limitations of openweathermap.org for free account,

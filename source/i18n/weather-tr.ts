@@ -109,8 +109,8 @@ ddd</source>
         <translation>Aralık</translation>
     </message>
     <message>
-        <source>999 mi\nutes</source>
-        <translation>999 \d\akik\a</translation>
+        <source>999 mi\n</source>
+        <translation>999 \dk</translation>
     </message>
     <message>
         <source>Due to the limitations of openweathermap.org for free account,
