@@ -1,17 +1,16 @@
 #include "weathersettingdialog.h"
+#include "countrycode.h"
+
 #include <QBoxLayout>
 #include <QGroupBox>
 #include <QDialogButtonBox>
 #include <QLabel>
-#include <QAbstractItemView>
 #include <QApplication>
-#include <QProxyStyle>
 #include <QListView>
-#include <QObject>
 #include <QToolButton>
 #include <QEnterEvent>
 #include <QDesktopServices>
-#include "countrycode.h"
+#include <QSettings>
 
 LimitedHightComboBox::LimitedHightComboBox(int h, QWidget *parent):
     QComboBox(parent), height(h)
@@ -49,6 +48,7 @@ bool AppidBox::eventFilter(QObject *watched, QEvent *event)
 }
 
 #define OPTIONS_WIDTH 125
+
 WeatherSettingDialog::WeatherSettingDialog(PluginProxyInterface *proxyInter,
                                            WeatherPlugin *weatherplugin,
                                            QNetworkAccessManager &net,
@@ -57,21 +57,20 @@ WeatherSettingDialog::WeatherSettingDialog(PluginProxyInterface *proxyInter,
     QDialog(parent), m_proxyInter(proxyInter), m_weatherPlugin(weatherplugin),
     m_cityLookupClient(new CityLookup(net, logStream, this)),
     cityBox(new QLineEdit(this)), countryBox(new LimitedHightComboBox(500, this)),
-    themeBox(new QComboBox(this)), timeIntvBox(new QLineEdit(this)),
+    themeBox(new QComboBox(this)), timeIntvBox(new QSpinBox(this)),
     appidBox(new AppidBox(this)), langBox(new QComboBox(this))
 {
     setModal(true);
     setWindowTitle(tr("Weather"));
     setWindowIcon(QIcon::fromTheme("weather"));
 
-    QVBoxLayout *vLayout = new QVBoxLayout();
-    vLayout->setSizeConstraint(QLayout::SetFixedSize);
+    QVBoxLayout *mainLayout = new QVBoxLayout();
+    mainLayout->setSizeConstraint(QLayout::SetFixedSize);
 
     QGroupBox *geoGroup = new QGroupBox(tr("City Information"));
 
     QGridLayout *geoLayout = new QGridLayout();
     geoLayout->addWidget(new QLabel(tr("City")), 0, 0);
-//    cityBox->setEditable(true);
     cityBox->setText(m_weatherPlugin->m_client->cityName());
     cityBox->setMinimumWidth(OPTIONS_WIDTH);
     geoLayout->addWidget(cityBox, 0, 1);
@@ -85,7 +84,7 @@ WeatherSettingDialog::WeatherSettingDialog(PluginProxyInterface *proxyInter,
 
     QLabel *geoComments =  new QLabel(tr("You can also input cityid from <a href=\""
                                          "https://openweathermap.org/city\" style=\""
-                                         "color: yellow\">openweathermap.org</a> "
+                                         "color: DodgerBlue\">openweathermap.org</a> "
                                          "(the number in the URL of your city page) "
                                          "to avoid unambiguous result. "));
     geoComments->setWordWrap(true);
@@ -94,7 +93,7 @@ WeatherSettingDialog::WeatherSettingDialog(PluginProxyInterface *proxyInter,
     geoComments->setOpenExternalLinks(true);
     geoLayout->addWidget(geoComments, 1, 0, 1, -1);
     geoGroup->setLayout(geoLayout);
-    vLayout->addWidget(geoGroup);
+    mainLayout->addWidget(geoGroup);
 
     QString appid = m_proxyInter->getValue(m_weatherPlugin, APPID_KEY, "").toString();
 
@@ -138,10 +137,11 @@ WeatherSettingDialog::WeatherSettingDialog(PluginProxyInterface *proxyInter,
     settingLayout->addLayout(unitButtons, 1, 1);
     settingLayout->addWidget(new QLabel(tr("Interval")), 2, 0);
 
-    timeIntvBox->setText(QString::number(m_proxyInter->getValue(
-                              m_weatherPlugin, CHK_INTERVAL_KEY,
-                              DEFAULT_INTERVAL).toInt()));
-    timeIntvBox->setInputMask(tr("999 mi\\n"));
+    timeIntvBox->setValue(m_proxyInter->getValue(m_weatherPlugin, CHK_INTERVAL_KEY,
+                              DEFAULT_INTERVAL).toInt());
+    timeIntvBox->setSuffix(tr(" min"));
+    timeIntvBox->setRange(1, 999);
+    timeIntvBox->setSingleStep(1);
     timeIntvBox->setMaximumWidth(OPTIONS_WIDTH);
     timeIntvBox->setEnabled(appid != "");
     timeIntvBox->setToolTip(tr("Due to the limitations of openweathermap.org"
@@ -151,6 +151,9 @@ WeatherSettingDialog::WeatherSettingDialog(PluginProxyInterface *proxyInter,
 
     settingLayout->addWidget(timeIntvBox, 2, 1);
     settingLayout->addWidget(new QLabel(tr("Theme")), 3, 0);
+
+    QString theme = "QListView::item { height: 28px; border: 0px; padding-left: 4px; }"
+                    "QListView::item:selected { background-color: #61B5F8; }";
 
     themeBox->setView(new ComboView);
     themeBox->addItems(themeSet);
@@ -164,15 +167,20 @@ WeatherSettingDialog::WeatherSettingDialog(PluginProxyInterface *proxyInter,
     themeBox->setItemIcon(3, QIcon(":/Simple/02d"));
     themeBox->setItemIcon(4, QIcon(":/Sticker/02d"));
     themeBox->setItemIcon(5, QIcon(":/White/02d"));
-    themeBox->setStyleSheet("QListView::item { height: 28px; border: 0px; padding-left: 4px; }"
-                            "QListView::item:selected { background-color: #61B5F8; }");
+    themeBox->setStyleSheet(theme);
 
     settingLayout->addWidget(themeBox, 3, 1);
     settingLayout->addWidget(new QLabel(tr("Language")), 4, 0);
 
     QString defaultLang = tr("System Language");
+    langBox->setView(new ComboView);
     langBox->addItems(langSet.keys());
     langBox->setItemText(0, defaultLang);
+    for (int i = 0; i < langSet.keys().count(); i++) {
+        langBox->setItemIcon(i, QIcon(":/icon/language"));
+    }
+    langBox->setIconSize(QSize(20, 20));
+    langBox->setStyleSheet(theme);
     langBox->setMaximumWidth(OPTIONS_WIDTH);
     langBox->setToolTip(tr("The language selected for the weather\n"
                            "forecast will be applied immediately."));
@@ -182,24 +190,24 @@ WeatherSettingDialog::WeatherSettingDialog(PluginProxyInterface *proxyInter,
         lang = defaultLang;
     currentLang = langSet.key(lang, defaultLang);
     langBox->setCurrentText(currentLang);
-
     settingLayout->addWidget(langBox, 4, 1);
-
     optionGroup->setLayout(settingLayout);
-    vLayout->addWidget(optionGroup);
+    mainLayout->addWidget(optionGroup);
 
     QDialogButtonBox *buttons = new QDialogButtonBox(QDialogButtonBox::Cancel |
                                                      QDialogButtonBox::Ok, this);
     buttons->setStyleSheet("button-layout: 3;");
+    buttons->setContentsMargins(0, 5, 0, 0);
+    mainLayout->addWidget(buttons, 1, Qt::AlignCenter);
+
+    setLayout(mainLayout);
+
     connect(buttons, &QDialogButtonBox::rejected, this, &QDialog::reject);
     connect(buttons, &QDialogButtonBox::accepted, this, &WeatherSettingDialog::accept);
+}
 
-    QHBoxLayout *hbox = new QHBoxLayout;
-    hbox->setContentsMargins(0, 5, 0, 0);
-    hbox->addWidget(buttons);
-    vLayout->addLayout(hbox);
-
-    setLayout(vLayout);
+WeatherSettingDialog::~WeatherSettingDialog()
+{
 }
 
 void WeatherSettingDialog::accept()
@@ -227,10 +235,7 @@ void WeatherSettingDialog::accept()
                             metricButton->isChecked());
     m_proxyInter->saveValue(m_weatherPlugin, APPID_KEY,
                             appidBox->text());
-    bool ok;
-    int time = timeIntvBox->text().split(" ")[0].toInt(&ok);
-    if (time <= 0 || !ok)
-        time = 30;
+    int time = timeIntvBox->value();
     m_proxyInter->saveValue(m_weatherPlugin, CHK_INTERVAL_KEY, time);
     if (langBox->currentIndex() == 0)
         m_proxyInter->saveValue(m_weatherPlugin, LANG_KEY, "");

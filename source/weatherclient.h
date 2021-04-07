@@ -1,11 +1,8 @@
 #ifndef WEATHERCLIENT_H
 #define WEATHERCLIENT_H
 
-#include <QObject>
 #include <QPointer>
 #include <QDateTime>
-// #include <QFile>
-// #include <QStandardPaths>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QTimer>
@@ -120,10 +117,10 @@ class WeatherClient : public OpenWeatherClient
 public:
     explicit WeatherClient(QNetworkAccessManager &net,
                            QTextStream &logStream,
-                           int cityid=0,
-                           const QString &city="",
-                           const QString &country="",
-                           bool ismetric=true,
+                           int cityid = 0,
+                           const QString &city = "",
+                           const QString &country = "",
+                           bool ismetric = true,
                            QObject *parent = nullptr);
     virtual ~WeatherClient() override;
 
@@ -145,20 +142,20 @@ public:
     QString tempNow() const {
         return QString::number(wnow.temp, 'f', 1).replace(".0", "") + " " + tempUnit();}
     QString windDir() const {
-    QStringList labels({tr("N"), tr("NE"), tr("E"), tr("SE"),
-                        tr("S"), tr("SW"), tr("W"), tr("NW")});
+        QStringList labels({tr("N"), tr("NE"), tr("E"), tr("SE"),
+                            tr("S"), tr("SW"), tr("W"), tr("NW")});
         return labels[(qRound(wnow.windDeg + 180.0 / labels.size()) *
-                        labels.size() / 360) % labels.size()];
+                            labels.size() / 360) % labels.size()];
     }
     QString tipNow() const {
-        return QString("%1, %2\n%3\n%4\n").arg(city).arg(
-                    country).arg(tempNow()).arg(wnow.description.at(0).toUpper() + wnow.description.mid(1)) +
-                tr("Humidity %1%\n").arg(wnow.humidity) +
-                tr("Clouds %1%\n").arg(wnow.clouds) +
-                tr("Wind %1 %2, %3\n").arg(wnow.wind).arg(windUnit()).arg(windDir()) +
-                tr("Sunrise at %1\n").arg(sunrise.toString("HH:mm")) +
-                tr("Sunset at %1\n").arg(sunset.toString("HH:mm")) +
-                tr("Updated at %1").arg(last.toString("HH:mm"));
+        return QString("%1, %2\n%3\n%4\n").arg(city).arg(country).arg(tempNow()).arg(
+            wnow.description.at(0).toUpper() + wnow.description.mid(1)) +
+            tr("Humidity %1%\n").arg(wnow.humidity) +
+            tr("Clouds %1%\n").arg(wnow.clouds) +
+            tr("Wind %1 %2, %3\n").arg(wnow.wind).arg(windUnit()).arg(windDir()) +
+            tr("Sunrise at %1\n").arg(sunrise.toString("HH:mm")) +
+            tr("Sunset at %1\n").arg(sunset.toString("HH:mm")) +
+            tr("Updated at %1").arg(last.toString("HH:mm"));
     }
     const QVector<Weather> &getForecast() const {return forecasts;}
 
@@ -209,7 +206,7 @@ private:
         WeatherDone = 0x0001,
         ForecastDone = 0x0002,
         AllDone = WeatherDone | ForecastDone
-    } ;
+    };
     QFlags<Status> status;
 
 };

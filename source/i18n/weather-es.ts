@@ -133,8 +133,8 @@ ddd</source>
         <translation>País</translation>
     </message>
     <message>
-        <source>You can also input cityid from &lt;a href=&quot;https://openweathermap.org/city&quot; style=&quot;color: yellow&quot;&gt;openweathermap.org&lt;/a&gt; (the number in the URL of your city page) to avoid unambiguous result. </source>
-        <translation>También puede introducir cityid desde &lt;a href=&quot;https://openweathermap.org/city&quot; style=&quot;color: yellow&quot;&gt;openweathermap.org&lt;/a&gt; (el número en la URL de su página de ciudad) para evitar resultados erroneos. </translation>
+        <source>You can also input cityid from &lt;a href=&quot;https://openweathermap.org/city&quot; style=&quot;color: DodgerBlue&quot;&gt;openweathermap.org&lt;/a&gt; (the number in the URL of your city page) to avoid unambiguous result. </source>
+        <translation>También puede introducir cityid desde &lt;a href=&quot;https://openweathermap.org/city&quot; style=&quot;color: DodgerBlue&quot;&gt;openweathermap.org&lt;/a&gt; (el número en la URL de su página de ciudad) para evitar resultados erroneos. </translation>
     </message>
     <message>
         <source>Options</source>

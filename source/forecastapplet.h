@@ -1,12 +1,11 @@
 #ifndef FORECASTWIDGET_H
 #define FORECASTWIDGET_H
 
-#include <QWidget>
-#include <QVBoxLayout>
-#include <QLabel>
 #include "weatherclient.h"
 #include "constants.h"
-#include <QApplication>
+
+#include <QWidget>
+#include <QLabel>
 
 #define MAXDAYS 5
 
@@ -27,12 +26,12 @@ public:
     QPixmap loadWIconNow(const QString &name="na", int size=50) const;
     QPixmap loadWIconSymbolic(const QString &name="na", int size=16) const;
 
-protected:
-    void paintEvent(QPaintEvent *e);
-
 public slots:
     void reloadForecast();
     void updateError(OpenWeatherClient::ErrorCode);
+
+protected:
+    void paintEvent(QPaintEvent *e);
 
 private:
     const WeatherClient *client;
@@ -41,7 +40,6 @@ private:
     struct ForecastColumn {
         QPointer<QLabel> Date, WImg, Temp;
     } fcstLabels[MAXDAYS];
-    QGridLayout defaultLayout;
 
     QVector<WeatherClient::Weather>::const_iterator getDayStatic(
             const WeatherClient::Weather *start,

@@ -6,16 +6,20 @@
 
 #define LOGTIMEFORMAT "yyyy/MM/dd HH:mm:ss"
 #define DEFAULTAPPID "5cdf0b925cb0a95f1151ec3c2f3be33b"
+#define LOGMAX 144
 
 /* OpenWeatherClient members */
 
 QString OpenWeatherClient::appid = DEFAULTAPPID;
-void OpenWeatherClient::setAppid(const QString &key) {
+
+void OpenWeatherClient::setAppid(const QString &key)
+{
     if (key != "")
         appid = key;
     else
         appid = DEFAULTAPPID;
 }
+
 OpenWeatherClient::OpenWeatherClient(QNetworkAccessManager &net,
                                      QTextStream &logStream,
                                      QObject *parent):
@@ -47,7 +51,7 @@ inline void cleanNetworkReply(QPointer<QNetworkReply> reply) {
         reply->deleteLater();
     }
 }
-#define LOGMAX 144
+
 QByteArray OpenWeatherClient::netResult(QPointer<QNetworkReply> reply) {
     netTimer.stop();
     QByteArray result = reply->readAll();
@@ -86,7 +90,8 @@ WeatherClient::~WeatherClient() {
     cleanNetworkReply(weatherReply);
 }
 
-void WeatherClient::checkWeather(int timeout) {
+void WeatherClient::checkWeather(int timeout)
+{
     if (checking) {
         emit error(AlreadyChecking);
         return;
@@ -99,11 +104,10 @@ void WeatherClient::checkWeather(int timeout) {
     log << "Check update: " << last.toString(LOGTIMEFORMAT) << endl;
     checking = true;
     status = NoneDone;
-    QString options = QString("%1&lang=%2&units=%3").arg(
-                cityid == 0 ?
-                    QString("q=%1,%2").arg(city).arg(country) :
-                    QString("id=%1").arg(cityid)
-                    ).arg(lang).arg(isMetric? "metric" : "imperial");
+    QString options = QString("%1&lang=%2&units=%3").arg(cityid == 0 ?
+                      QString("q=%1,%2").arg(city).arg(country) :
+                      QString("id=%1").arg(cityid)
+                      ).arg(lang).arg(isMetric? "metric" : "imperial");
 
     cleanNetworkReply(weatherReply);
     weatherReply = netRequest("weather", options);
@@ -115,11 +119,11 @@ void WeatherClient::checkWeather(int timeout) {
     connect(forecastReply, &QNetworkReply::finished,
             this, &WeatherClient::parseForecast);
 
-
     netTimer.start(timeout);
 }
 
-void WeatherClient::errorHandle(ErrorCode e){
+void WeatherClient::errorHandle(ErrorCode e)
+{
     switch (e) {
     case AlreadyChecking:
         return;
@@ -142,11 +146,11 @@ void WeatherClient::errorHandle(ErrorCode e){
     cleanNetworkReply(weatherReply);
 }
 
-inline OpenWeatherClient::Weather jWeatherParser(const QJsonObject &w) {
+inline OpenWeatherClient::Weather jWeatherParser(const QJsonObject &w)
+{
     // See https://openweathermap.org/current for more info
     return OpenWeatherClient::Weather(
     {QDateTime::fromTime_t(w.value("dt").toInt()),        // datetime
-
      w.value("weather").toArray().at(0).toObject().value("id").toInt(),             // weather id
      w.value("weather").toArray().at(0).toObject().value("main").toString(),        // weather
      w.value("weather").toArray().at(0).toObject().value("description").toString(), // description
@@ -160,7 +164,9 @@ inline OpenWeatherClient::Weather jWeatherParser(const QJsonObject &w) {
      w.value("wind").toObject().value("deg").toDouble(),
      w.value("clouds").toObject().value("all").toInt()});
 }
-void WeatherClient::parseWeather() {
+
+void WeatherClient::parseWeather()
+{
     QByteArray result = netResult(weatherReply);
     QJsonParseError JPE;
     QJsonDocument JD = QJsonDocument::fromJson(result, &JPE);
@@ -207,7 +213,8 @@ void WeatherClient::parseWeather() {
     emit weatherReady();
 }
 
-void WeatherClient::parseForecast() {
+void WeatherClient::parseForecast()
+{
     QByteArray result = netResult(forecastReply);
     QJsonParseError JPE;
     QJsonDocument JD = QJsonDocument::fromJson(result, &JPE);
@@ -256,7 +263,8 @@ void WeatherClient::parseForecast() {
     emit forecastReady();
 }
 
-inline void unitTransform (bool isMetric, OpenWeatherClient::Weather &item) {
+inline void unitTransform (bool isMetric, OpenWeatherClient::Weather &item)
+{
     if (isMetric) {
         item.temp = (item.temp - 32)/1.8;
         item.temp_max = (item.temp_max - 32)/1.8;
@@ -270,7 +278,9 @@ inline void unitTransform (bool isMetric, OpenWeatherClient::Weather &item) {
         item.wind *= 2.23693629;
     }
 }
-void WeatherClient::setMetric(bool is) {
+
+void WeatherClient::setMetric(bool is)
+{
     if(is == isMetric) {
         return;
     }
@@ -282,16 +292,15 @@ void WeatherClient::setMetric(bool is) {
     emit changed();
 }
 
-
-
 /* CityLookup members */
 
-CityLookup::~CityLookup() {
+CityLookup::~CityLookup()
+{
     cleanNetworkReply(netReply);
 }
 
-void CityLookup::lookForCity(const QString &city, const QString &country,
-                             int timeout){
+void CityLookup::lookForCity(const QString &city, const QString &country, int timeout)
+{
     if (country == "")
         return;
     log << QString("Look for city: %1, %2 ").arg(city).arg(country);
@@ -305,7 +314,8 @@ void CityLookup::lookForCity(const QString &city, const QString &country,
     return;
 }
 
-void CityLookup::parseCityInfo() {
+void CityLookup::parseCityInfo()
+{
     QByteArray result = netResult(netReply);
     QJsonParseError JPE;
     QJsonDocument JD = QJsonDocument::fromJson(result, &JPE);
@@ -323,7 +333,7 @@ void CityLookup::parseCityInfo() {
         QList<CityInfo> cityList;
         for (const auto item: list) {
             auto o = item.toObject();
-            cityList.append(CityInfo{
+            cityList.append(CityInfo {
                                 o.value("id").toInt(), o.value("name").toString(),
                                 o.value("sys").toObject().value("country").toString(),
                                 o.value("coord").toObject().value("lat").toDouble(),
@@ -335,7 +345,8 @@ void CityLookup::parseCityInfo() {
     return;
 }
 
-void CityLookup::errorHandle(ErrorCode e){
+void CityLookup::errorHandle(ErrorCode e)
+{
     switch (e) {
     case AlreadyChecking:
         return;

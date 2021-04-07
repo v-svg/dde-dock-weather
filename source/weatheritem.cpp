@@ -29,21 +29,26 @@ QSize WeatherItem::sizeHint() const
         return m_iconPixmap.size();
 }
 
+void WeatherItem::mouseReleaseEvent(QMouseEvent *e)
+{
+    if (e->button() == Qt::MidButton)
+        emit mouseMidBtnClicked();
+
+    QWidget::mouseReleaseEvent(e);
+}
+
 void WeatherItem::paintEvent(QPaintEvent *e)
 {
     Q_UNUSED(e);
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing);
 
+    QFont font = qApp->font();
     QString tempNow = client->tempNow();
-
-    if (tempCur != tempNow)
-        emit requestUpdateGeometry();
     
     const Dock::DisplayMode displayMode = qApp->property(PROP_DISPLAY_MODE).value<Dock::DisplayMode>();
     if (displayMode == Dock::Efficient) {
         painter.setPen(Qt::white);
-        QFont font = qApp->font();
         painter.setFont(font);
         QFontMetrics FM(font);
         int heightFM = FM.height();
@@ -68,19 +73,18 @@ void WeatherItem::paintEvent(QPaintEvent *e)
             if (client->weatherNowIcon() != "na")
                 painter.drawText(rect(), Qt::AlignCenter, " \n" + tempNow);
         } 
+        if (FM.width(tempCur) != FM.width(tempNow))
+            emit requestUpdateGeometry();
     } else {
         const QRectF rf = QRectF(rect());
         const QRectF rfp = QRectF(m_iconPixmap.rect());
         painter.drawPixmap(rf.center() - rfp.center() / m_iconPixmap.devicePixelRatioF(), m_iconPixmap);
 
-
         if (client->weatherNowIcon() != "na") {
             int fontSize = std::min(width(), height()) * 0.21;
-            QFont font = qApp->font();
             font.setWeight(QFont::Black);
             font.setPixelSize(fontSize);
             painter.setFont(font);
-
             QFontMetrics FM(font);
             int widthFM = FM.width(tempNow);
             qreal offsetX = -widthFM / 2 - fontSize / 4;

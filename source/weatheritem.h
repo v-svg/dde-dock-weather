@@ -2,6 +2,7 @@
 #define WEATHERWIDGET_H
 
 #include <QWidget>
+#include <QMouseEvent>
 #include "weatherclient.h"
 #include "forecastapplet.h"
 
@@ -15,6 +16,7 @@ public:
 
 signals:
     void requestUpdateGeometry() const;
+    void mouseMidBtnClicked() const;
 
 protected:
     QSize sizeHint() const;
@@ -22,6 +24,7 @@ protected:
         QWidget::resizeEvent(e);
         refreshIcon();
     }
+    void mouseReleaseEvent(QMouseEvent *e);
     void paintEvent(QPaintEvent *e);
 
 public slots:

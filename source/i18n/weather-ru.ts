@@ -133,8 +133,8 @@ ddd</source>
         <translation>Страна</translation>
     </message>
     <message>
-        <source>You can also input cityid from &lt;a href=&quot;https://openweathermap.org/city&quot; style=&quot;color: yellow&quot;&gt;openweathermap.org&lt;/a&gt; (the number in the URL of your city page) to avoid unambiguous result. </source>
-        <translation>Вы также можете ввести cityid с &lt;a href=&quot;https://openweathermap.org/city&quot; style=&quot;color: yellow&quot;&gt;openweathermap.org&lt;/a&gt; (число в URL-адресе страницы вашего города), чтобы избежать однозначного результата. </translation>
+        <source>You can also input cityid from &lt;a href=&quot;https://openweathermap.org/city&quot; style=&quot;color: DodgerBlue&quot;&gt;openweathermap.org&lt;/a&gt; (the number in the URL of your city page) to avoid unambiguous result. </source>
+        <translation>Вы также можете ввести cityid с &lt;a href=&quot;https://openweathermap.org/city&quot; style=&quot;color: DodgerBlue&quot;&gt;openweathermap.org&lt;/a&gt; (число в URL-адресе страницы вашего города), чтобы избежать однозначного результата. </translation>
     </message>
     <message>
         <source>Options</source>
@@ -145,8 +145,8 @@ ddd</source>
         <translation>Интервал</translation>
     </message>
     <message>
-        <source>999 mi\n</source>
-        <translation>999 мин</translation>
+        <source> min</source>
+        <translation> мин</translation>
     </message>
     <message>
         <source>Due to the limitations of openweathermap.org for free account,

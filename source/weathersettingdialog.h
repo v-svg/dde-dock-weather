@@ -8,6 +8,7 @@
 #include <QSpinBox>
 #include <QRadioButton>
 #include <QDialog>
+#include <QEvent>
 #include "dde-dock/pluginsiteminterface.h"
 #include "weatherclient.h"
 #include "weatherplugin.h"
@@ -22,7 +23,7 @@ public:
                                   QNetworkAccessManager &net,
                                   QTextStream &logStream,
                                   QWidget *parent = nullptr);
-//    virtual ~WeatherSettingDialog() override;
+    ~WeatherSettingDialog();
 
 public slots:
     virtual void accept() override; // Also delete self lateron
@@ -36,21 +37,20 @@ private:
     ///
     PluginProxyInterface *m_proxyInter;
     WeatherPlugin *m_weatherPlugin;
-    QPointer<CityLookup> m_cityLookupClient;
-    QPointer<QLineEdit> cityBox;
-    QPointer<QComboBox> countryBox;
-    QPointer<QComboBox> themeBox;
-    QPointer<QLineEdit> timeIntvBox;
-    QPointer<QRadioButton> metricButton;
-    QPointer<QRadioButton> imperialButton;
-    QPointer<QLineEdit> appidBox;
-    QPointer<QComboBox> langBox;
+    CityLookup *m_cityLookupClient;
+    QLineEdit *cityBox;
+    QComboBox *countryBox;
+    QComboBox *themeBox;
+    QSpinBox *timeIntvBox;
+    QRadioButton *metricButton;
+    QRadioButton *imperialButton;
+    QLineEdit *appidBox;
+    QComboBox *langBox;
     QString currentLang;
-    void loadSettings();
+    void reloadLang();
 
 private slots:
     void newAppidInput(const QString &input);
-    void reloadLang();
 };
 
 
@@ -87,7 +87,7 @@ class ComboView : public QListView
 protected:
     QStyleOptionViewItem viewOptions() const
     {
-        // Set icon on the top and center of combo box item.
+        // Set icon on the left and center of combo box item.
         QStyleOptionViewItem option = QListView::viewOptions();
         option.decorationAlignment = Qt::AlignLeft | Qt::AlignVCenter;
         option.decorationPosition = QStyleOptionViewItem::Left;

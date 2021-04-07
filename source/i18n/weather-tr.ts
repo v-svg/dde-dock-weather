@@ -97,8 +97,8 @@ ddd</source>
         <translation>Ülke</translation>
     </message>
     <message>
-        <source>You can also input cityid from &lt;a href=&quot;https://openweathermap.org/city&quot; style=&quot;color: yellow&quot;&gt;openweathermap.org&lt;/a&gt; (the number in the URL of your city page) to avoid unambiguous result. </source>
-        <translation>Kesin olmayan sonuçlardan kaçınmak için &lt;a href=&quot;https://openweathermap.org/city&quot; style=&quot;color: yellow&quot;&gt;openweathermap.org&lt;/a&gt; adresinden Şehir Id&apos;si (şehrinizin sayfasının adres çubuğundaki numara) girebilirsiniz. </translation>
+        <source>You can also input cityid from &lt;a href=&quot;https://openweathermap.org/city&quot; style=&quot;color: DodgerBlue&quot;&gt;openweathermap.org&lt;/a&gt; (the number in the URL of your city page) to avoid unambiguous result. </source>
+        <translation>Kesin olmayan sonuçlardan kaçınmak için &lt;a href=&quot;https://openweathermap.org/city&quot; style=&quot;color: DodgerBlue&quot;&gt;openweathermap.org&lt;/a&gt; adresinden Şehir Id&apos;si (şehrinizin sayfasının adres çubuğundaki numara) girebilirsiniz. </translation>
     </message>
     <message>
         <source>Options</source>
@@ -109,8 +109,8 @@ ddd</source>
         <translation>Aralık</translation>
     </message>
     <message>
-        <source>999 mi\n</source>
-        <translation>999 \dk</translation>
+        <source> min</source>
+        <translation> dk</translation>
     </message>
     <message>
         <source>Due to the limitations of openweathermap.org for free account,

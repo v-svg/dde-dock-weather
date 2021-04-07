@@ -1,5 +1,4 @@
 #include "weatherplugin.h"
-#include <QDesktopServices>
 #include <QApplication>
 #include "weathersettingdialog.h"
 
@@ -69,7 +68,7 @@ void WeatherPlugin::init(PluginProxyInterface *proxyInter) {
                                       themeSet[0]).toString());
     m_items = new WeatherItem(m_client, m_popups);
     m_tips = new QLabel(tr(" Updating... "));
-    m_tips->setStyleSheet("color:white; padding:0px 2px;");
+    m_tips->setStyleSheet("padding: 0px 2px;");
     m_refershTimer.setInterval(MINUTE * m_proxyInter->getValue(
                                    this, CHK_INTERVAL_KEY, DEFAULT_INTERVAL
                                    ).toInt());
@@ -84,6 +83,9 @@ void WeatherPlugin::init(PluginProxyInterface *proxyInter) {
             m_client, QOverload<>::of(&WeatherClient::checkWeather));
     connect(m_items, &WeatherItem::requestUpdateGeometry, [this] {
             m_proxyInter->itemUpdate(this, pluginName());
+    });
+    connect(m_items, &WeatherItem::mouseMidBtnClicked, [this] {
+            emit checkUpdate();
     });
 
     if(!pluginIsDisable()) {
@@ -166,6 +168,7 @@ void WeatherPlugin::refreshIcon(const QString &itemKey) {
 }
 
 void WeatherPlugin::refreshTips() {
+    m_tips->setText(tr(" Updating... "));
     m_tips->setText(m_client->tipNow());
 }
 

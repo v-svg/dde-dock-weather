@@ -125,4 +125,7 @@
         <file alias="50n">icon/White/50n.png</file>
         <file alias="na">icon/White/na.png</file>
     </qresource>
+    <qresource prefix="/icon">
+        <file alias="language">icon/language.png</file>
+    </qresource>
 </RCC>

@@ -127,8 +127,8 @@
         <translation>国家</translation>
     </message>
     <message>
-        <source>You can also input cityid from &lt;a href=&quot;https://openweathermap.org/city&quot; style=&quot;color: yellow&quot;&gt;openweathermap.org&lt;/a&gt; (the number in the URL of your city page) to avoid unambiguous result. </source>
-        <translation>请输入城市名的英文拼写. 你也可以输入来自 &lt;a href=&quot;https://openweathermap.org/city&quot; style=&quot;color: yellow&quot;&gt;openweathermap.org&lt;/a&gt; 的 cityid (城市页面 URL 中的数字) 以避免城市重名的影响. </translation>
+        <source>You can also input cityid from &lt;a href=&quot;https://openweathermap.org/city&quot; style=&quot;color: DodgerBlue&quot;&gt;openweathermap.org&lt;/a&gt; (the number in the URL of your city page) to avoid unambiguous result. </source>
+        <translation>请输入城市名的英文拼写. 你也可以输入来自 &lt;a href=&quot;https://openweathermap.org/city&quot; style=&quot;color: DodgerBlue&quot;&gt;openweathermap.org&lt;/a&gt; 的 cityid (城市页面 URL 中的数字) 以避免城市重名的影响. </translation>
     </message>
     <message>
         <source>Options</source>
@@ -139,8 +139,8 @@
         <translation>间隔</translation>
     </message>
     <message>
-        <source>999 mi\n</source>
-        <translation>999分钟</translation>
+        <source> min</source>
+        <translation>分钟</translation>
     </message>
     <message>
         <source>Due to the limitations of openweathermap.org for free account,
