@@ -14,16 +14,18 @@ ForecastApplet::ForecastApplet(const WeatherClient *wcli,
     setFixedHeight(468);
 
     QGridLayout *defaultLayout = new QGridLayout;
+    defaultLayout->setContentsMargins(7, 5, 7, 0);
     defaultLayout->setSpacing(0);
 
     const QDate today = QDate::currentDate();
     QString dateString = today.toString(DATEFORMAT);
-    QString styleSheet = QString("font-weight: 500; font-size: 21px; margin: 0px 0px 22px 0px;");
-
+    QString styleSheet = "font-weight: 500;"
+                         "font-size: 21px;"
+                         "margin-bottom: 16px;";
     WImgNow = new QLabel;
     WImgNow->setPixmap(loadWIconNow("na", PRIMARYICONSIZE));
     WImgNow->setAlignment(Qt::AlignCenter);
-    WImgNow->setStyleSheet("margin: 0px 0px 22px 0px;");
+    WImgNow->setStyleSheet("margin-bottom: 16px;");
     WImgNow->setFixedSize(72, 105);
     defaultLayout->addWidget(WImgNow, 0, 0);
 
